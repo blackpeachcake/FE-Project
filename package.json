@@ -8,10 +8,13 @@
         "format:fix": "biome check --write .",
         "lint": "eslint '**/*.{js,mjs,cjs,ts,tsx}'",
         "lint:fix": "eslint '**/*.{js,mjs,cjs,ts,tsx}' --fix",
-        "test": "pnpm -r test"
+        "test": "pnpm -r test",
+        "changeset": "changeset",
+        "version": "changeset version"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.5.6",
+        "@changesets/cli": "^3.0.1",
         "@naverpay/biome-config": "^0.0.1",
         "@naverpay/eslint-config": "^2.4.3",
         "eslint": "^9.39.5",
