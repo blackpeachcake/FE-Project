@@ -3,11 +3,15 @@ const {execSync} = require('child_process')
 const fs = require('fs')
 
 const commitMsgFile = process.argv[2]
-if (!commitMsgFile) process.exit(0)
+if (!commitMsgFile) {
+    process.exit(0)
+}
 
 const branch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim()
 const match = branch.match(/^feature\/(\d+)/)
-if (!match) process.exit(0)
+if (!match) {
+    process.exit(0)
+}
 
 const issueNumber = match[1]
 const prefix = `[#${issueNumber}] `
