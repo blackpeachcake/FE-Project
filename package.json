@@ -1,0 +1,27 @@
+{
+    "name": "fe-toolkit",
+    "private": true,
+    "packageManager": "pnpm@10.34.5+sha512.a4ee05f2f73658255bd6a89859c065a45c28a57daefae2c893a168ee2b73168c37b91e83e57ea67654ad03f03031746430e8bce38e362e042605fb8abc80192e",
+    "scripts": {
+        "prepare": "lefthook install",
+        "format": "biome check .",
+        "format:fix": "biome check --write .",
+        "lint": "eslint '**/*.{js,mjs,cjs,ts,tsx}'",
+        "lint:fix": "eslint '**/*.{js,mjs,cjs,ts,tsx}' --fix",
+        "test": "pnpm -r test"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^2.5.6",
+        "@naverpay/biome-config": "^0.0.1",
+        "@naverpay/eslint-config": "^2.4.3",
+        "eslint": "^9.39.5",
+        "lefthook": "^2.1.10",
+        "typescript": "^5.9.3",
+        "vitest": "^4.1.10"
+    },
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "lefthook"
+        ]
+    }
+}
