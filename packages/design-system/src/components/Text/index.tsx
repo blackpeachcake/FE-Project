@@ -18,14 +18,22 @@ const variantConfig: Record<TextVariant, {tag: ElementType; weight: TextWeight}>
 }
 
 interface TextProps extends Omit<ComponentPropsWithoutRef<'p'>, 'color'> {
-    variant: TextVariant
+    variant?: TextVariant
     color?: TextColor
     weight?: TextWeight
     as?: ElementType
     children: ReactNode
 }
 
-export default function Text({variant, color = 'primary', weight, as, className, children, ...rest}: TextProps) {
+export default function Text({
+    variant = 'body',
+    color = 'primary',
+    weight,
+    as,
+    className,
+    children,
+    ...rest
+}: TextProps) {
     const Tag = as ?? variantConfig[variant].tag
     const textWeight = weight ?? variantConfig[variant].weight
 
