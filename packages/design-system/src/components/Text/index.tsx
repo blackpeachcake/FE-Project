@@ -1,6 +1,8 @@
+import classNames from 'classnames/bind'
+
 import styles from './text.module.scss'
 
-import type {ComponentPropsWithoutRef, ElementType, ReactNode} from 'react'
+import type {ElementType, HTMLAttributes, ReactNode} from 'react'
 
 export type TextVariant = 'caption' | 'body-sm' | 'body' | 'heading-sm' | 'heading' | 'heading-lg'
 export type TextColor = 'primary' | 'secondary' | 'brand' | 'success' | 'error' | 'warning'
@@ -17,11 +19,12 @@ const variantConfig: Record<TextVariant, {tag: ElementType; weight: TextWeight}>
     'heading-lg': {tag: 'h1', weight: 'bold'},
 }
 
-interface TextProps extends Omit<ComponentPropsWithoutRef<'p'>, 'color'> {
+interface TextProps extends Omit<HTMLAttributes<HTMLElement>, 'color'> {
     variant?: TextVariant
     color?: TextColor
     weight?: TextWeight
     as?: ElementType
+    multiline?: boolean
     children: ReactNode
 }
 
@@ -30,6 +33,7 @@ export default function Text({
     color = 'primary',
     weight,
     as,
+    multiline = false,
     className,
     children,
     ...rest
@@ -37,13 +41,19 @@ export default function Text({
     const Tag = as ?? variantConfig[variant].tag
     const textWeight = weight ?? variantConfig[variant].weight
 
-    const classNames = [styles[variant], styles[`color-${color}`], styles[`weight-${textWeight}`], className]
-        .filter(Boolean)
-        .join(' ')
+    const cx = classNames.bind(styles)
+    const classes = cx(variant, `color-${color}`, `weight-${textWeight}`, className)
+
+    const content =
+        multiline && typeof children === 'string'
+            ? children
+                  .split('\n')
+                  .flatMap((line, index, lines) => (index < lines.length - 1 ? [line, <br key={index} />] : [line]))
+            : children
 
     return (
-        <Tag className={classNames} {...rest}>
-            {children}
+        <Tag className={classes} {...rest}>
+            {content}
         </Tag>
     )
 }
