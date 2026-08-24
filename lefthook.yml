@@ -1,0 +1,16 @@
+pre-commit:
+  jobs:
+    - name: eslint
+      glob: "*.{js,mjs,cjs,ts,tsx}"
+      run: pnpm exec eslint --fix {staged_files}
+      stage_fixed: true
+
+    - name: biome
+      glob: "*.{js,mjs,cjs,ts,tsx,json}"
+      run: pnpm exec biome check --write --no-errors-on-unmatched {staged_files}
+      stage_fixed: true
+
+commit-msg:
+  jobs:
+    - name: prepend issue number
+      run: node scripts/lefthook/prepend-issue-number.js {1}
