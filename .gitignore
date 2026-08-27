@@ -23,3 +23,6 @@ build/
 # local-only project notes
 CLAUDE.md
 .claude/
+
+*storybook.log
+storybook-static
