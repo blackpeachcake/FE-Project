@@ -1,0 +1,107 @@
+.button {
+  border: none;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: var(--radius-md);
+  gap: var(--spacing-1);
+}
+
+.solid {
+  color: var(--color-text-on-solid);
+}
+
+.outline {
+  background: transparent;
+  border-width: 1px;
+  border-style: solid;
+}
+
+$colors: brand, success, error, warning;
+
+@each $color in $colors {
+  //solid
+  .solid.color-#{$color} {
+    background: var(--color-#{$color});
+  }
+  .solid.color-#{$color}:hover {
+    background: var(--color-#{$color}-hover);
+  }
+  .solid.color-#{$color}:active {
+    background: var(--color-#{$color}-active);
+  }
+
+  // outline, ghost
+  .outline.color-#{$color},
+  .ghost.color-#{$color} {
+    color: var(--color-#{$color});
+  }
+  .outline.color-#{$color} {
+    border-color: var(--color-#{$color});
+  }
+  //
+  .outline.color-#{$color}:hover,
+  .ghost.color-#{$color}:hover {
+    color: var(--color-#{$color}-hover);
+  }
+  .outline.color-#{$color}:hover {
+    border-color: var(--color-#{$color}-hover);
+  }
+  //
+  .outline.color-#{$color}:active,
+  .ghost.color-#{$color}:active {
+    color: var(--color-#{$color}-active);
+  }
+
+  .outline.color-#{$color}:active {
+    border-color: var(--color-#{$color}-active);
+  }
+}
+
+.size-sm {
+  padding: var(--spacing-1) var(--spacing-3);
+  font-size: var(--font-size-body-sm);
+  min-height: var(--control-height-sm);
+}
+.size-md {
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-body);
+  min-height: var(--control-height-md);
+}
+.size-lg {
+  padding: var(--spacing-3) var(--spacing-5);
+  font-size: var(--font-size-body);
+  min-height: var(--control-height-lg);
+}
+
+//로딩
+
+.loading {
+  cursor: wait;
+  opacity: 0.8;
+}
+
+//disabled
+
+.solid:disabled:not(.loading),
+.outline:disabled:not(.loading),
+.ghost:disabled:not(.loading) {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+.solid:disabled:not(.loading) {
+  background: var(--color-bg-disabled);
+}
+
+.outline:disabled:not(.loading) {
+  border-color: var(--color-border-disabled);
+}
+
+// fullWidth
+.full-width {
+  width: 100%;
+}
