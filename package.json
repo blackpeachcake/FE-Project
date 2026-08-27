@@ -18,6 +18,7 @@
         "@naverpay/biome-config": "^0.0.1",
         "@naverpay/eslint-config": "^2.4.3",
         "eslint": "^9.39.5",
+        "eslint-plugin-storybook": "^10.5.10",
         "lefthook": "^2.1.10",
         "typescript": "^5.9.3",
         "vitest": "^4.1.10"
